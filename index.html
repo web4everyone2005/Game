@@ -1,70 +1,160 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌍 Bảo Vệ Môi Trường – Dọn Bãi Biển</title>
   <style>
     /* ─── Reset & Base ─────────────────────────────────────── */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { overflow: hidden; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
 
     /* ─── Main Game Container ─────────────────────────────── */
     #game {
-      width: 100vw; height: 100vh;
+      width: 100vw;
+      height: 100vh;
       position: relative;
       background: linear-gradient(180deg,
-        #87d8f7 0%, #5bbde8 30%, #3aaed8 50%, #2a9dc8 60%);
+          #87d8f7 0%, #5bbde8 30%, #3aaed8 50%, #2a9dc8 60%);
     }
 
     /* ─── Sun ─────────────────────────────────────────────── */
     .sun {
-      position: absolute; top: 28px; left: 70px;
-      width: 72px; height: 72px;
+      position: absolute;
+      top: 28px;
+      left: 70px;
+      width: 72px;
+      height: 72px;
       background: radial-gradient(circle at 40% 40%, #fff176, #FFD700 50%, #FFA500);
       border-radius: 50%;
-      box-shadow: 0 0 0 12px rgba(255,215,0,.18),
-                  0 0 0 28px rgba(255,215,0,.08),
-                  0 0 60px #FFD700;
+      box-shadow: 0 0 0 12px rgba(255, 215, 0, .18),
+        0 0 0 28px rgba(255, 215, 0, .08),
+        0 0 60px #FFD700;
       animation: sunPulse 4s ease-in-out infinite alternate;
     }
+
     .sun-ray {
-      position: absolute; top: 50%; left: 50%;
-      width: 6px; height: 22px;
-      background: rgba(255,215,0,.7);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 22px;
+      background: rgba(255, 215, 0, .7);
       border-radius: 3px;
       transform-origin: 3px 0;
     }
+
     @keyframes sunPulse {
-      from { box-shadow: 0 0 0 12px rgba(255,215,0,.18), 0 0 0 28px rgba(255,215,0,.08), 0 0 60px #FFD700; }
-      to   { box-shadow: 0 0 0 18px rgba(255,215,0,.25), 0 0 0 40px rgba(255,215,0,.12), 0 0 90px #FFD700; }
+      from {
+        box-shadow: 0 0 0 12px rgba(255, 215, 0, .18), 0 0 0 28px rgba(255, 215, 0, .08), 0 0 60px #FFD700;
+      }
+
+      to {
+        box-shadow: 0 0 0 18px rgba(255, 215, 0, .25), 0 0 0 40px rgba(255, 215, 0, .12), 0 0 90px #FFD700;
+      }
     }
 
     /* ─── Clouds ──────────────────────────────────────────── */
     .cloud {
       position: absolute;
-      background: rgba(255,255,255,.9);
+      background: rgba(255, 255, 255, .9);
       border-radius: 50px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,.08));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .08));
     }
-    .cloud::before, .cloud::after {
-      content: ''; position: absolute; background: inherit; border-radius: 50%;
+
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
     }
-    .cloud-1 { width: 100px; height: 34px; top: 60px; left: 200px; animation: drift 18s linear infinite; }
-    .cloud-1::before { width: 50px; height: 50px; top: -24px; left: 14px; }
-    .cloud-1::after  { width: 36px; height: 36px; top: -18px; left: 46px; }
 
-    .cloud-2 { width: 130px; height: 40px; top: 40px; left: 450px; animation: drift 24s linear infinite; opacity:.8; }
-    .cloud-2::before { width: 64px; height: 64px; top: -32px; left: 18px; }
-    .cloud-2::after  { width: 48px; height: 48px; top: -24px; left: 60px; }
+    .cloud-1 {
+      width: 100px;
+      height: 34px;
+      top: 60px;
+      left: 200px;
+      animation: drift 18s linear infinite;
+    }
 
-    .cloud-3 { width: 90px; height: 30px; top: 80px; left: 720px; animation: drift 20s linear infinite; opacity:.7; }
-    .cloud-3::before { width: 44px; height: 44px; top: -22px; left: 12px; }
-    .cloud-3::after  { width: 34px; height: 34px; top: -16px; left: 40px; }
+    .cloud-1::before {
+      width: 50px;
+      height: 50px;
+      top: -24px;
+      left: 14px;
+    }
+
+    .cloud-1::after {
+      width: 36px;
+      height: 36px;
+      top: -18px;
+      left: 46px;
+    }
+
+    .cloud-2 {
+      width: 130px;
+      height: 40px;
+      top: 40px;
+      left: 450px;
+      animation: drift 24s linear infinite;
+      opacity: .8;
+    }
+
+    .cloud-2::before {
+      width: 64px;
+      height: 64px;
+      top: -32px;
+      left: 18px;
+    }
+
+    .cloud-2::after {
+      width: 48px;
+      height: 48px;
+      top: -24px;
+      left: 60px;
+    }
+
+    .cloud-3 {
+      width: 90px;
+      height: 30px;
+      top: 80px;
+      left: 720px;
+      animation: drift 20s linear infinite;
+      opacity: .7;
+    }
+
+    .cloud-3::before {
+      width: 44px;
+      height: 44px;
+      top: -22px;
+      left: 12px;
+    }
+
+    .cloud-3::after {
+      width: 34px;
+      height: 34px;
+      top: -16px;
+      left: 40px;
+    }
 
     @keyframes drift {
-      from { transform: translateX(0); }
-      to   { transform: translateX(120vw); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(120vw);
+      }
     }
 
     /* ─── Birds ────────────────────────────────────────────── */
@@ -72,147 +162,269 @@
       position: absolute;
       pointer-events: none;
     }
+
     /* Each bird: two wing halves */
     .bird {
       position: relative;
-      width: 36px; height: 14px;
+      width: 36px;
+      height: 14px;
     }
-    .wing-l, .wing-r {
-      position: absolute; top: 0;
-      width: 18px; height: 10px;
-      border-top: 3px solid rgba(40,40,60,.75);
+
+    .wing-l,
+    .wing-r {
+      position: absolute;
+      top: 0;
+      width: 18px;
+      height: 10px;
+      border-top: 3px solid rgba(40, 40, 60, .75);
       border-radius: 50% 50% 0 0 / 100% 100% 0 0;
       transform-origin: right center;
     }
-    .wing-l { left: 0;  transform-origin: right center; }
-    .wing-r { right: 0; transform-origin: left  center; transform: scaleX(-1); }
-    .bird-wrap.flap .wing-l { animation: flapL 0.42s ease-in-out infinite alternate; }
-    .bird-wrap.flap .wing-r { animation: flapR 0.42s ease-in-out infinite alternate; }
+
+    .wing-l {
+      left: 0;
+      transform-origin: right center;
+    }
+
+    .wing-r {
+      right: 0;
+      transform-origin: left center;
+      transform: scaleX(-1);
+    }
+
+    .bird-wrap.flap .wing-l {
+      animation: flapL 0.42s ease-in-out infinite alternate;
+    }
+
+    .bird-wrap.flap .wing-r {
+      animation: flapR 0.42s ease-in-out infinite alternate;
+    }
+
     @keyframes flapL {
-      from { transform: rotateX(0deg)   rotateZ(-30deg); }
-      to   { transform: rotateX(60deg)  rotateZ(15deg);  }
+      from {
+        transform: rotateX(0deg) rotateZ(-30deg);
+      }
+
+      to {
+        transform: rotateX(60deg) rotateZ(15deg);
+      }
     }
+
     @keyframes flapR {
-      from { transform: scaleX(-1) rotateX(0deg)  rotateZ(-30deg); }
-      to   { transform: scaleX(-1) rotateX(60deg) rotateZ(15deg);  }
+      from {
+        transform: scaleX(-1) rotateX(0deg) rotateZ(-30deg);
+      }
+
+      to {
+        transform: scaleX(-1) rotateX(60deg) rotateZ(15deg);
+      }
     }
+
     /* Fly across screen */
-    .bird-wrap.fly-1 { top: 13%; animation: flyAcross1 18s linear infinite; }
-    .bird-wrap.fly-2 { top:  8%; animation: flyAcross2 24s linear infinite 4s; transform: scale(.75); }
-    .bird-wrap.fly-3 { top: 18%; animation: flyAcross3 21s linear infinite 9s; transform: scale(.9);  }
-    .bird-wrap.fly-4 { top: 10%; animation: flyAcross1 28s linear infinite 13s; transform: scale(.6); }
-    .bird-wrap.fly-5 { top: 22%; animation: flyAcross2 16s linear infinite 7s; transform: scale(.8);  }
+    .bird-wrap.fly-1 {
+      top: 13%;
+      animation: flyAcross1 18s linear infinite;
+    }
+
+    .bird-wrap.fly-2 {
+      top: 8%;
+      animation: flyAcross2 24s linear infinite 4s;
+      transform: scale(.75);
+    }
+
+    .bird-wrap.fly-3 {
+      top: 18%;
+      animation: flyAcross3 21s linear infinite 9s;
+      transform: scale(.9);
+    }
+
+    .bird-wrap.fly-4 {
+      top: 10%;
+      animation: flyAcross1 28s linear infinite 13s;
+      transform: scale(.6);
+    }
+
+    .bird-wrap.fly-5 {
+      top: 22%;
+      animation: flyAcross2 16s linear infinite 7s;
+      transform: scale(.8);
+    }
+
     @keyframes flyAcross1 {
-      from { left: -60px;  }
-      to   { left: calc(100vw + 60px); }
+      from {
+        left: -60px;
+      }
+
+      to {
+        left: calc(100vw + 60px);
+      }
     }
+
     @keyframes flyAcross2 {
-      from { left: -60px; }
-      to   { left: calc(100vw + 60px); }
+      from {
+        left: -60px;
+      }
+
+      to {
+        left: calc(100vw + 60px);
+      }
     }
+
     @keyframes flyAcross3 {
-      from { left: -60px; }
-      to   { left: calc(100vw + 60px); }
+      from {
+        left: -60px;
+      }
+
+      to {
+        left: calc(100vw + 60px);
+      }
     }
 
     /* ─── Ocean ───────────────────────────────────────────── */
     #ocean {
-      position: absolute; bottom: 32%;
-      width: 100%; height: 32%;
+      position: absolute;
+      bottom: 32%;
+      width: 100%;
+      height: 32%;
       background: linear-gradient(180deg,
-        #1a6fa0 0%, #1e82bc 40%, #2196f3 75%, #64b5f6 100%);
+          #1a6fa0 0%, #1e82bc 40%, #2196f3 75%, #64b5f6 100%);
       overflow: hidden;
     }
+
     /* Sparkles on water */
     #ocean::after {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,.4) 1px, transparent 1px);
+        radial-gradient(circle, rgba(255, 255, 255, .6) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255, 255, 255, .4) 1px, transparent 1px);
       background-size: 60px 60px, 40px 40px;
       background-position: 0 0, 30px 30px;
       animation: sparkle 3s linear infinite;
       opacity: .4;
     }
+
     @keyframes sparkle {
-      0%   { opacity: .2; }
-      50%  { opacity: .5; }
-      100% { opacity: .2; }
+      0% {
+        opacity: .2;
+      }
+
+      50% {
+        opacity: .5;
+      }
+
+      100% {
+        opacity: .2;
+      }
     }
 
     /* Waves */
     .wave {
-      position: absolute; left: 0;
-      width: 200%; height: 80px;
+      position: absolute;
+      left: 0;
+      width: 200%;
+      height: 80px;
     }
+
     .wave-1 {
       top: -18px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%234fc3f7' fill-opacity='.7' d='M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
       background-size: 720px 80px;
       animation: waveMove 5s linear infinite;
     }
+
     .wave-2 {
       top: -6px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%2381d4fa' fill-opacity='.55' d='M0,20 C300,60 600,0 900,40 C1080,65 1280,10 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
       background-size: 900px 80px;
       animation: waveMove 7s linear infinite reverse;
     }
+
     .wave-3 {
       top: 4px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%23b3e5fc' fill-opacity='.4' d='M0,50 C240,20 480,70 720,40 C960,10 1200,60 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
       background-size: 800px 80px;
       animation: waveMove 9s linear infinite;
     }
+
     @keyframes waveMove {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     /* ─── Shoreline Foam ──────────────────────────────────── */
     #shore {
-      position: absolute; bottom: 31.5%;
-      width: 100%; height: 22px;
+      position: absolute;
+      bottom: 31.5%;
+      width: 100%;
+      height: 22px;
       background: linear-gradient(180deg,
-        rgba(255,255,255,.0) 0%,
-        rgba(255,255,255,.7) 50%,
-        rgba(230,248,255,.6) 100%);
+          rgba(255, 255, 255, .0) 0%,
+          rgba(255, 255, 255, .7) 50%,
+          rgba(230, 248, 255, .6) 100%);
       animation: foamPulse 3s ease-in-out infinite;
     }
+
     @keyframes foamPulse {
-      0%,100% { opacity:.7; }
-      50%      { opacity:1; }
+
+      0%,
+      100% {
+        opacity: .7;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     /* ─── Sandy Beach ─────────────────────────────────────── */
     #beach {
-      position: absolute; bottom: 0; left: 0;
-      width: 100%; height: 33%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 33%;
       background: linear-gradient(180deg,
-        #f5dfa0 0%, #e8ca7a 25%, #d4b460 60%, #c8a850 100%);
+          #f5dfa0 0%, #e8ca7a 25%, #d4b460 60%, #c8a850 100%);
     }
+
     /* Sand grain texture */
     #beach::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background-image:
-        radial-gradient(circle, rgba(160,120,60,.3) 1px, transparent 1px),
-        radial-gradient(circle, rgba(200,160,80,.2) 1px, transparent 1px);
+        radial-gradient(circle, rgba(160, 120, 60, .3) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200, 160, 80, .2) 1px, transparent 1px);
       background-size: 18px 18px, 12px 12px;
       background-position: 0 0, 9px 9px;
     }
+
     /* Wet sand near water */
     #beach::after {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 30%;
       background: linear-gradient(180deg,
-        rgba(180,150,80,.6) 0%, transparent 100%);
+          rgba(180, 150, 80, .6) 0%, transparent 100%);
     }
 
     /* Small sand pebbles */
     .pebble {
-      position: absolute; bottom: 0;
+      position: absolute;
+      bottom: 0;
       border-radius: 50%;
       background: #b8985a;
       opacity: .4;
@@ -220,732 +432,996 @@
 
     /* ─── Palm Trees ──────────────────────────────────────── */
     .palm {
-      position: absolute; bottom: 32%;
-      font-size: 4.5rem; line-height: 1;
-      filter: drop-shadow(3px 3px 5px rgba(0,0,0,.25));
+      position: absolute;
+      bottom: 32%;
+      font-size: 4.5rem;
+      line-height: 1;
+      filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, .25));
       pointer-events: none;
     }
 
     /* ─── Trash Items ─────────────────────────────────────── */
     .trash-wrap {
       position: absolute;
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
-      cursor: pointer; user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+      user-select: none;
       z-index: 20;
       transition: transform .2s;
     }
-    .trash-wrap:hover { transform: scale(1.15) rotate(-5deg); }
-    .trash-wrap:hover .trash-label { opacity: 1; }
-    .trash-wrap.collected { visibility: hidden; pointer-events: none; }
 
-    .trash-icon {
-      width: 74px; height: 74px;
-      object-fit: contain;
-      filter: drop-shadow(2px 3px 4px rgba(0,0,0,.4));
-      display: block;
+    .trash-wrap:hover {
+      transform: scale(1.15) rotate(-5deg);
     }
-    .trash-label {
-      background: rgba(0,0,0,.6);
-      color: #fff; font-size: .65rem; font-weight: 600;
-      padding: 2px 7px; border-radius: 10px;
-      white-space: nowrap; opacity: 0;
-      transition: opacity .2s;
+
+    .trash-wrap:hover .trash-label {
+      opacity: 1;
+    }
+
+    .trash-wrap.collected {
+      visibility: hidden;
       pointer-events: none;
     }
 
+    .trash-icon {
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+      filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, .4));
+      display: block;
+    }
+
+    .trash-label {
+      display: none;
+    }
+
     /* ─── Right Panel (Earth + TrashCan) ─────────────────── */
-    #side-panel { display: none; }
+    #side-panel {
+      display: none;
+    }
 
     #trashCan {
-      position: fixed; right: 30px; bottom: 6px;
-      width: 90px; height: 90px;
+      position: fixed;
+      right: 30px;
+      bottom: 6px;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.45));
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .45));
       transition: transform .3s;
       z-index: 200;
     }
+
     #trashCan.shake {
       animation: trashShake .5s ease-in-out;
     }
+
     @keyframes trashShake {
-      0%,100% { transform: rotate(0); }
-      20%      { transform: rotate(-12deg); }
-      60%      { transform: rotate(12deg); }
-      80%      { transform: rotate(-6deg); }
+
+      0%,
+      100% {
+        transform: rotate(0);
+      }
+
+      20% {
+        transform: rotate(-12deg);
+      }
+
+      60% {
+        transform: rotate(12deg);
+      }
+
+      80% {
+        transform: rotate(-6deg);
+      }
     }
 
     #earth {
-      position: fixed; left: 30px; bottom: 6px;
-      width: 90px; height: 90px;
+      position: fixed;
+      left: 30px;
+      bottom: 6px;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
-      cursor: default; pointer-events: none;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .35));
+      cursor: default;
+      pointer-events: none;
       z-index: 200;
       animation: earthFloat 3s ease-in-out infinite alternate;
     }
+
     @keyframes earthFloat {
-      from { transform: translateY(0) rotate(-4deg); }
-      to   { transform: translateY(-8px) rotate(4deg); }
+      from {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      to {
+        transform: translateY(-8px) rotate(4deg);
+      }
     }
+
     #earth.flying {
       position: fixed !important;
       pointer-events: none;
       animation: none;
-      transition: left .75s cubic-bezier(.25,.46,.45,.94),
-                  top  .75s cubic-bezier(.25,.46,.45,.94);
+      transition: left .75s cubic-bezier(.25, .46, .45, .94),
+        top .75s cubic-bezier(.25, .46, .45, .94);
     }
 
 
 
     /* ─── Hint Bar ────────────────────────────────────────── */
     #hint {
-      position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,.52); color: #fff;
-      padding: 7px 22px; border-radius: 20px; font-size: .85rem;
-      z-index: 200; pointer-events: none;
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, .52);
+      color: #fff;
+      padding: 7px 22px;
+      border-radius: 20px;
+      font-size: .85rem;
+      z-index: 200;
+      pointer-events: none;
     }
 
     /* ─── Title ───────────────────────────────────────────── */
     #title {
-      position: fixed; top: 16px; left: 18px;
-      font-size: 1.15rem; font-weight: 800;
-      color: #fff; text-shadow: 1px 2px 6px rgba(0,0,0,.45);
+      position: fixed;
+      top: 16px;
+      left: 18px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 1px 2px 6px rgba(0, 0, 0, .45);
       z-index: 200;
     }
 
     /* ─── Modal Overlay ───────────────────────────────────── */
     #modal {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      backdrop-filter: blur(4px);
       z-index: 1000;
-      align-items: center; justify-content: center;
+      align-items: center;
+      justify-content: center;
     }
-    #modal.show { display: flex; }
+
+    #modal.show {
+      display: flex;
+    }
 
     #modal-box {
-      background: #fff; border-radius: 22px;
-      padding: 32px 28px; max-width: 480px; width: 92%;
-      box-shadow: 0 24px 70px rgba(0,0,0,.45);
-      animation: popIn .38s cubic-bezier(.34,1.56,.64,1);
+      background: #fff;
+      border-radius: 22px;
+      padding: 32px 28px;
+      max-width: 480px;
+      width: 92%;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .45);
+      animation: popIn .38s cubic-bezier(.34, 1.56, .64, 1);
     }
+
     @keyframes popIn {
-      from { transform: scale(.4) rotate(-8deg); opacity: 0; }
-      to   { transform: scale(1) rotate(0); opacity: 1; }
+      from {
+        transform: scale(.4) rotate(-8deg);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+      }
     }
-    #modal-trash-icon { text-align: center; font-size: 3rem; margin-bottom: 6px; }
+
+    #modal-trash-icon {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 6px;
+    }
+
     #modal-trash-name {
-      text-align: center; font-size: .8rem; font-weight: 700;
-      color: #888; text-transform: uppercase; letter-spacing: 1px;
+      text-align: center;
+      font-size: .8rem;
+      font-weight: 700;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 12px;
     }
+
     #modal-question {
-      font-size: 1.08rem; font-weight: 700; color: #111;
-      text-align: center; line-height: 1.55; margin-bottom: 18px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #111;
+      text-align: center;
+      line-height: 1.55;
+      margin-bottom: 18px;
     }
+
     .ans-btn {
-      display: flex; align-items: center; gap: 10px;
-      width: 100%; padding: 11px 16px; margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 16px;
+      margin: 6px 0;
       background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff; border: none; border-radius: 12px;
-      font-size: .95rem; cursor: pointer;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: .95rem;
+      cursor: pointer;
       transition: transform .15s, box-shadow .15s;
       text-align: left;
     }
+
     .ans-btn .letter {
-      width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(255,255,255,.25);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
     }
-    .ans-btn:hover:not(:disabled) { transform: translateX(6px); box-shadow: 0 4px 16px rgba(102,126,234,.45); }
-    .ans-btn.correct { background: linear-gradient(135deg, #43a047, #66bb6a); animation: bumpUp .4s ease; }
-    .ans-btn.wrong   { background: linear-gradient(135deg, #e53935, #ef5350); animation: jitter .4s ease; }
-    @keyframes bumpUp { 0%,100%{transform:scale(1)}  50%{transform:scale(1.04)} }
-    @keyframes jitter { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+
+    .ans-btn:hover:not(:disabled) {
+      transform: translateX(6px);
+      box-shadow: 0 4px 16px rgba(102, 126, 234, .45);
+    }
+
+    .ans-btn.correct {
+      background: linear-gradient(135deg, #43a047, #66bb6a);
+      animation: bumpUp .4s ease;
+    }
+
+    .ans-btn.wrong {
+      background: linear-gradient(135deg, #e53935, #ef5350);
+      animation: jitter .4s ease;
+    }
+
+    @keyframes bumpUp {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.04)
+      }
+    }
+
+    @keyframes jitter {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      25% {
+        transform: translateX(-8px)
+      }
+
+      75% {
+        transform: translateX(8px)
+      }
+    }
 
     #modal-result {
-      display: none; text-align: center;
-      font-size: 1rem; font-weight: 600; padding: 12px;
-      border-radius: 10px; margin-top: 14px; line-height: 1.5;
+      display: none;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 14px;
+      line-height: 1.5;
     }
-    #modal-result.ok  { background: #e8f5e9; color: #2e7d32; }
-    #modal-result.bad { background: #ffebee; color: #c62828; }
+
+    #modal-result.ok {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    #modal-result.bad {
+      background: #ffebee;
+      color: #c62828;
+    }
 
     /* ─── Flying Trash Clone ──────────────────────────────── */
     .trash-clone {
-      position: fixed; width: 70px; height: 70px;
-      z-index: 900; pointer-events: none;
-      transition: left .85s cubic-bezier(.25,.46,.45,.94),
-                  top  .85s cubic-bezier(.25,.46,.45,.94),
-                  transform .85s, opacity .85s;
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      z-index: 900;
+      pointer-events: none;
+      transition: left .85s cubic-bezier(.25, .46, .45, .94),
+        top .85s cubic-bezier(.25, .46, .45, .94),
+        transform .85s, opacity .85s;
     }
-    .trash-clone img { width: 100%; height: 100%; object-fit: contain; }
+
+    .trash-clone img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     /* ─── Floating Score Text ─────────────────────────────── */
     .float-text {
-      position: fixed; font-size: 1.8rem; font-weight: 800;
-      z-index: 2000; pointer-events: none;
+      position: fixed;
+      font-size: 1.8rem;
+      font-weight: 800;
+      z-index: 2000;
+      pointer-events: none;
       animation: floatUp 1.4s ease-out forwards;
     }
+
     @keyframes floatUp {
-      0%   { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-70px) scale(1.4); }
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-70px) scale(1.4);
+      }
     }
 
     /* ─── Win Screen ──────────────────────────────────────── */
     #win-screen {
-      display: none; position: fixed; inset: 0;
+      display: none;
+      position: fixed;
+      inset: 0;
       background: linear-gradient(135deg, #1b5e20ee, #2e7d32ee);
       z-index: 3000;
-      flex-direction: column; align-items: center; justify-content: center;
-      color: #fff; text-align: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
     }
-    #win-screen.show { display: flex; }
-    #win-screen .trophy { font-size: 6rem; animation: bounce 1s ease infinite alternate; }
-    @keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-20px)} }
-    #win-screen h1 { font-size: 2.4rem; margin: 14px 0 8px; }
-    #win-screen p  { font-size: 1.2rem; opacity: .9; margin-bottom: 6px; }
-    #win-score { font-size: 1.5rem; font-weight: 800; margin: 18px 0; }
+
+    #win-screen.show {
+      display: flex;
+    }
+
+    #win-screen .trophy {
+      font-size: 6rem;
+      animation: bounce 1s ease infinite alternate;
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0)
+      }
+
+      to {
+        transform: translateY(-20px)
+      }
+    }
+
+    #win-screen h1 {
+      font-size: 2.4rem;
+      margin: 14px 0 8px;
+    }
+
+    #win-screen p {
+      font-size: 1.2rem;
+      opacity: .9;
+      margin-bottom: 6px;
+    }
+
+    #win-score {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 18px 0;
+    }
+
     #restart-btn {
-      padding: 14px 40px; font-size: 1.15rem; font-weight: 800;
-      background: #fff; color: #2e7d32;
-      border: none; border-radius: 30px; cursor: pointer;
-      box-shadow: 0 6px 24px rgba(0,0,0,.3);
+      padding: 14px 40px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      background: #fff;
+      color: #2e7d32;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, .3);
       transition: transform .2s;
     }
-    #restart-btn:hover { transform: scale(1.08); }
+
+    #restart-btn:hover {
+      transform: scale(1.08);
+    }
 
     /* ─── Particles ───────────────────────────────────────── */
     .particle {
-      position: fixed; border-radius: 50%;
-      pointer-events: none; z-index: 2500;
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2500;
       animation: burst .8s ease-out forwards;
     }
+
     @keyframes burst {
-      0%   { opacity:1; transform:scale(1); }
-      100% { opacity:0; transform:scale(0) translate(var(--dx), var(--dy)); }
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0) translate(var(--dx), var(--dy));
+      }
     }
   </style>
 </head>
+
 <body>
-<div id="game">
+  <div id="game">
 
-  <!-- ── Sky ── -->
-  <div class="sun">
-    <!-- rays generated by JS -->
+    <!-- ── Sky ── -->
+    <div class="sun">
+      <!-- rays generated by JS -->
+    </div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <!-- Birds flying across sky -->
+    <div class="bird-wrap flap fly-1">
+      <div class="bird">
+        <div class="wing-l"></div>
+        <div class="wing-r"></div>
+      </div>
+    </div>
+    <div class="bird-wrap flap fly-2">
+      <div class="bird">
+        <div class="wing-l"></div>
+        <div class="wing-r"></div>
+      </div>
+    </div>
+    <div class="bird-wrap flap fly-3">
+      <div class="bird">
+        <div class="wing-l"></div>
+        <div class="wing-r"></div>
+      </div>
+    </div>
+    <div class="bird-wrap flap fly-4">
+      <div class="bird">
+        <div class="wing-l"></div>
+        <div class="wing-r"></div>
+      </div>
+    </div>
+    <div class="bird-wrap flap fly-5">
+      <div class="bird">
+        <div class="wing-l"></div>
+        <div class="wing-r"></div>
+      </div>
+    </div>
+
+    <!-- ── Ocean ── -->
+    <div id="ocean">
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+      <div class="wave wave-3"></div>
+    </div>
+    <div id="shore"></div>
+
+    <!-- ── Beach ── -->
+    <div id="beach"></div>
+
+    <!-- Palm trees -->
+    <div class="palm" style="left:3%">🌴</div>
+    <div class="palm" style="right:18%">🌴</div>
+
+    <!-- ── Trash Items ── -->
+
+    <!-- Fish bone -->
+    <div class="trash-wrap" id="t-fish" data-type="fish" style="left:32%; bottom:14%">
+      <img class="trash-icon" src="images/xuong-ca-2.jpg" alt="Xương cá" />
+      <div class="trash-label">Xương cá</div>
+    </div>
+
+    <!-- Apple -->
+    <div class="trash-wrap" id="t-apple" data-type="apple" style="left:56%; bottom:21%">
+      <img class="trash-icon" src="images/pngtree-bitten-red-apple-vector-illustration-png-image_21002433.png"
+        alt="Trái táo" />
+      <div class="trash-label">Trái táo</div>
+    </div>
+
+    <!-- Water bottle -->
+    <div class="trash-wrap" id="t-bottle" data-type="bottle" style="left:74%; bottom:16%">
+      <img class="trash-icon" src="images/chai-500ml-trang-giot-nuoc-co-30.jpg" alt="Chai nước suối" />
+      <div class="trash-label">Chai nước suối</div>
+    </div>
+
+    <!-- Plastic bag -->
+    <div class="trash-wrap" id="t-bag" data-type="bag" style="left:22%; bottom:23%">
+      <img class="trash-icon"
+        src="images/pngtree-plastic-trash-bag-tightly-tied-isolated-on-transparent-background-png-image_16290805.png"
+        alt="Túi ni-lông" />
+      <div class="trash-label">Túi ni-lông</div>
+    </div>
+
+    <!-- Glass bottle -->
+    <div class="trash-wrap" id="t-glassbottle" data-type="glassbottle" style="left:63%; bottom:12%">
+      <img class="trash-icon" src="images/—Pngtree—broken glass wine bottle free_4600444.png" alt="Chai thủy tinh vỡ" />
+      <div class="trash-label">Chai thủy tinh vỡ</div>
+    </div>
+
+    <!-- Crab decoration -->
+    <div
+      style="position:absolute;bottom:14%;left:46%;font-size:1.8rem;pointer-events:none;animation:glide 5s ease-in-out infinite">
+      🦀</div>
+    <!-- Starfish -->
+    <div style="position:absolute;bottom:10%;left:20%;font-size:1.6rem;pointer-events:none;opacity:.8">⭐</div>
+    <!-- Shell -->
+    <div style="position:absolute;bottom:8%;left:64%;font-size:1.5rem;pointer-events:none;opacity:.7">🐚</div>
+
+  </div><!-- end #game -->
+
+  <!-- ── Earth (bottom-left on sand) ── -->
+  <img id="earth" src="images/eco-friendly-earth-character-giving-a-thumbs-up_11531370.png!bw700" alt="Earth" />
+
+  <!-- ── TrashCan (bottom-right on sand) ── -->
+  <img id="trashCan" src="images/pngtree-wheelie-bin-on-transparent-background-png-image_13402767.png"
+    alt="Thùng rác" />
+
+  <!-- ── (legacy wrapper, hidden) ── -->
+  <div id="side-panel"></div>
+
+  <!-- ── HUD ── -->
+  <div id="title">🌿 Bảo Vệ Môi Trường</div>
+  <span id="cnt-clean" style="display:none">0</span>
+  <span id="cnt-ok" style="display:none">0</span>
+  <span id="cnt-bad" style="display:none">0</span>
+
+  <div id="hint">👆 Nhấn vào rác thải để dọn sạch bãi biển!</div>
+
+  <!-- ── Modal ── -->
+  <div id="modal">
+    <div id="modal-box">
+      <div id="modal-trash-icon"></div>
+      <div id="modal-trash-name"></div>
+      <div id="modal-question"></div>
+      <div id="modal-answers"></div>
+    </div>
   </div>
-  <div class="cloud cloud-1"></div>
-  <div class="cloud cloud-2"></div>
-  <div class="cloud cloud-3"></div>
-  <!-- Birds flying across sky -->
-  <div class="bird-wrap flap fly-1">
-    <div class="bird"><div class="wing-l"></div><div class="wing-r"></div></div>
-  </div>
-  <div class="bird-wrap flap fly-2">
-    <div class="bird"><div class="wing-l"></div><div class="wing-r"></div></div>
-  </div>
-  <div class="bird-wrap flap fly-3">
-    <div class="bird"><div class="wing-l"></div><div class="wing-r"></div></div>
-  </div>
-  <div class="bird-wrap flap fly-4">
-    <div class="bird"><div class="wing-l"></div><div class="wing-r"></div></div>
-  </div>
-  <div class="bird-wrap flap fly-5">
-    <div class="bird"><div class="wing-l"></div><div class="wing-r"></div></div>
+
+  <!-- ── Win Screen ── -->
+  <div id="win-screen">
+    <div class="trophy">🏆</div>
+    <h1>Bãi Biển Sạch Rồi! 🎉</h1>
+    <p>Cảm ơn bạn đã bảo vệ môi trường!</p>
+    <div id="win-score"></div>
+    <button id="restart-btn" onclick="restartGame()">🔄 Chơi Lại</button>
   </div>
 
-  <!-- ── Ocean ── -->
-  <div id="ocean">
-    <div class="wave wave-1"></div>
-    <div class="wave wave-2"></div>
-    <div class="wave wave-3"></div>
-  </div>
-  <div id="shore"></div>
+  <script>
+    /* =========================================================
+       DATA
+       ========================================================= */
+    const QUIZ = {
 
-  <!-- ── Beach ── -->
-  <div id="beach"></div>
+      fish: {
+        icon: '<img src="images/xuong-ca-2.jpg" style="width:70px;height:70px;object-fit:contain">', name: 'Xương cá',
+        q: 'Xương cá thuộc loại rác hữu cơ. Cách xử lý TỐT NHẤT là gì?',
+        answers: [
+          { t: 'A. Chôn lấp dưới đất', ok: false },
+          { t: 'B. Đốt để tiêu hủy', ok: false },
+          { t: 'C. Ủ phân compost để bón cây', ok: true },
+          { t: 'D. Đổ xuống biển', ok: false },
+        ],
+        explain: '🌟 Đúng rồi! Rác hữu cơ như xương cá có thể ủ thành phân bón rất tốt cho cây trồng!',
+      },
+      apple: {
+        icon: '<img src="images/pngtree-bitten-red-apple-vector-illustration-png-image_21002433.png" style="width:70px;height:70px;object-fit:contain">', name: 'Trái táo',
+        q: 'Vỏ táo bị bỏ lại bãi biển sẽ phân hủy sau khoảng bao lâu?',
+        answers: [
+          { t: 'A. 1 – 2 tháng', ok: true },
+          { t: 'B. 5 – 10 năm', ok: false },
+          { t: 'C. 50 năm', ok: false },
+          { t: 'D. 500 năm', ok: false },
+        ],
+        explain: '🌟 Tuyệt vời! Rác hữu cơ tự nhiên như vỏ táo phân hủy rất nhanh – khoảng 1–2 tháng!',
+      },
+      bottle: {
+        icon: '<img src="images/chai-500ml-trang-giot-nuoc-co-30.jpg" style="width:70px;height:70px;object-fit:contain">', name: 'Chai nước suối',
+        q: 'Một chai nhựa PET cần bao nhiêu năm để phân hủy hoàn toàn?',
+        answers: [
+          { t: 'A. 10 – 20 năm', ok: false },
+          { t: 'B. 50 – 80 năm', ok: false },
+          { t: 'C. 100 – 200 năm', ok: false },
+          { t: 'D. 400 – 500 năm', ok: true },
+        ],
+        explain: '🌟 Chính xác! Chai nhựa PET cần tới 400–500 năm mới phân hủy được – hãy tái chế nhé!',
+      },
+      bag: {
+        icon: '<img src="images/pngtree-plastic-trash-bag-tightly-tied-isolated-on-transparent-background-png-image_16290805.png" style="width:70px;height:70px;object-fit:contain">', name: 'Túi ni-lông',
+        q: 'Túi ni-lông gây hại cho môi trường biển như thế nào?',
+        answers: [
+          { t: 'A. Cá tưởng là sứa và ăn phải', ok: true },
+          { t: 'B. Làm nước biển ngọt hơn', ok: false },
+          { t: 'C. Giúp san hô phát triển', ok: false },
+          { t: 'D. Không gây hại gì cả', ok: false },
+        ],
+        explain: '🌟 Đúng! Rùa biển và cá thường nhầm túi ni-lông là sứa rồi ăn phải, gây tắc nghẽn tiêu hóa và tử vong!',
+      },
+      glassbottle: {
+        icon: '<img src="images/—Pngtree—broken glass wine bottle free_4600444.png" style="width:70px;height:70px;object-fit:contain">', name: 'Chai thủy tinh vỡ',
+        q: 'Cách xử lý chai thủy tinh vỡ đúng nhất là gì?',
+        answers: [
+          { t: 'A. Vứt thẳng vào thùng rác thường', ok: false },
+          { t: 'B. Bỏ vào thùng tái chế thủy tinh', ok: true },
+          { t: 'C. Chôn xuống cát bãi biển', ok: false },
+          { t: 'D. Đổ xuống biển cho chìm', ok: false },
+        ],
+        explain: '🌟 Chính xác! Thủy tinh có thể tái chế 100% vô số lần mà không mất chất lượng – luôn bỏ vào thùng tái chế nhé!',
+      },
+    };
 
-  <!-- Palm trees -->
-  <div class="palm" style="left:3%">🌴</div>
-  <div class="palm" style="right:18%">🌴</div>
+    /* =========================================================
+       STATE
+       ========================================================= */
+    let cntOk = 0, cntBad = 0, cntClean = 0;
+    let busy = false;
+    let activeTW = null;   // trash-wrap element being processed
+    let earthHome = null;  // { left, top } in px (fixed coords)
 
-  <!-- ── Trash Items ── -->
-  <!-- Glass shard -->
-  <div class="trash-wrap" id="t-glass" data-type="glass"
-       style="left:11%; bottom:19%">
-    <img class="trash-icon" src="images/pngtree-fragment-glass-decorative-elements-png-image_4152084.png" alt="Mảnh thủy tinh" />
-    <div class="trash-label">Mảnh thủy tinh</div>
-  </div>
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+    function center(el) {
+      const r = el.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    }
 
-  <!-- Fish bone -->
-  <div class="trash-wrap" id="t-fish" data-type="fish"
-       style="left:32%; bottom:14%">
-    <img class="trash-icon" src="images/xuong-ca-2.jpg" alt="Xương cá" />
-    <div class="trash-label">Xương cá</div>
-  </div>
+    function floatText(x, y, txt, color) {
+      const d = document.createElement('div');
+      d.className = 'float-text';
+      d.style.cssText = `left:${x - 30}px; top:${y - 20}px; color:${color}`;
+      d.textContent = txt;
+      document.body.appendChild(d);
+      setTimeout(() => d.remove(), 1500);
+    }
 
-  <!-- Apple -->
-  <div class="trash-wrap" id="t-apple" data-type="apple"
-       style="left:56%; bottom:21%">
-    <img class="trash-icon" src="images/pngtree-bitten-red-apple-vector-illustration-png-image_21002433.png" alt="Trái táo" />
-    <div class="trash-label">Trái táo</div>
-  </div>
-
-  <!-- Water bottle -->
-  <div class="trash-wrap" id="t-bottle" data-type="bottle"
-       style="left:74%; bottom:16%">
-    <img class="trash-icon" src="images/chai-500ml-trang-giot-nuoc-co-30.jpg" alt="Chai nước suối" />
-    <div class="trash-label">Chai nước suối</div>
-  </div>
-
-  <!-- Crab decoration -->
-  <div style="position:absolute;bottom:14%;left:46%;font-size:1.8rem;pointer-events:none;animation:glide 5s ease-in-out infinite">🦀</div>
-  <!-- Starfish -->
-  <div style="position:absolute;bottom:10%;left:20%;font-size:1.6rem;pointer-events:none;opacity:.8">⭐</div>
-  <!-- Shell -->
-  <div style="position:absolute;bottom:8%;left:64%;font-size:1.5rem;pointer-events:none;opacity:.7">🐚</div>
-
-</div><!-- end #game -->
-
-<!-- ── Earth (bottom-left on sand) ── -->
-<img id="earth" src="images/eco-friendly-earth-character-giving-a-thumbs-up_11531370.png!bw700" alt="Earth" />
-
-<!-- ── TrashCan (bottom-right on sand) ── -->
-<img id="trashCan" src="images/pngtree-wheelie-bin-on-transparent-background-png-image_13402767.png" alt="Thùng rác" />
-
-<!-- ── (legacy wrapper, hidden) ── -->
-<div id="side-panel"></div>
-
-<!-- ── HUD ── -->
-<div id="title">🌿 Bảo Vệ Môi Trường</div>
-<span id="cnt-clean" style="display:none">0</span>
-<span id="cnt-ok" style="display:none">0</span>
-<span id="cnt-bad" style="display:none">0</span>
-
-<div id="hint">👆 Nhấn vào rác thải để dọn sạch bãi biển!</div>
-
-<!-- ── Modal ── -->
-<div id="modal">
-  <div id="modal-box">
-    <div id="modal-trash-icon"></div>
-    <div id="modal-trash-name"></div>
-    <div id="modal-question"></div>
-    <div id="modal-answers"></div>
-  </div>
-</div>
-
-<!-- ── Win Screen ── -->
-<div id="win-screen">
-  <div class="trophy">🏆</div>
-  <h1>Bãi Biển Sạch Rồi! 🎉</h1>
-  <p>Cảm ơn bạn đã bảo vệ môi trường!</p>
-  <div id="win-score"></div>
-  <button id="restart-btn" onclick="restartGame()">🔄 Chơi Lại</button>
-</div>
-
-<script>
-/* =========================================================
-   DATA
-   ========================================================= */
-const QUIZ = {
-  glass: {
-    icon: '<img src="images/pngtree-fragment-glass-decorative-elements-png-image_4152084.png" style="width:70px;height:70px;object-fit:contain">', name: 'Mảnh thủy tinh',
-    q: 'Mảnh thủy tinh cần bao nhiêu năm để phân hủy trong thiên nhiên?',
-    answers: [
-      { t: 'A. 50 – 100 năm',           ok: false },
-      { t: 'B. 500 – 1.000 năm',         ok: false },
-      { t: 'C. Hơn 1.000.000 năm (không phân hủy)', ok: true  },
-      { t: 'D. Chỉ khoảng 20 năm',       ok: false },
-    ],
-    explain: '🌟 Chính xác! Thủy tinh gần như không bao giờ tự phân hủy – nó tồn tại mãi mãi trong đất và biển!',
-  },
-  fish: {
-    icon: '<img src="images/xuong-ca-2.jpg" style="width:70px;height:70px;object-fit:contain">', name: 'Xương cá',
-    q: 'Xương cá thuộc loại rác hữu cơ. Cách xử lý TỐT NHẤT là gì?',
-    answers: [
-      { t: 'A. Chôn lấp dưới đất',       ok: false },
-      { t: 'B. Đốt để tiêu hủy',          ok: false },
-      { t: 'C. Ủ phân compost để bón cây', ok: true  },
-      { t: 'D. Đổ xuống biển',            ok: false },
-    ],
-    explain: '🌟 Đúng rồi! Rác hữu cơ như xương cá có thể ủ thành phân bón rất tốt cho cây trồng!',
-  },
-  apple: {
-    icon: '<img src="images/pngtree-bitten-red-apple-vector-illustration-png-image_21002433.png" style="width:70px;height:70px;object-fit:contain">', name: 'Trái táo',
-    q: 'Vỏ táo bị bỏ lại bãi biển sẽ phân hủy sau khoảng bao lâu?',
-    answers: [
-      { t: 'A. 1 – 2 tháng',  ok: true  },
-      { t: 'B. 5 – 10 năm',   ok: false },
-      { t: 'C. 50 năm',        ok: false },
-      { t: 'D. 500 năm',       ok: false },
-    ],
-    explain: '🌟 Tuyệt vời! Rác hữu cơ tự nhiên như vỏ táo phân hủy rất nhanh – khoảng 1–2 tháng!',
-  },
-  bottle: {
-    icon: '<img src="images/chai-500ml-trang-giot-nuoc-co-30.jpg" style="width:70px;height:70px;object-fit:contain">', name: 'Chai nước suối',
-    q: 'Một chai nhựa PET cần bao nhiêu năm để phân hủy hoàn toàn?',
-    answers: [
-      { t: 'A. 10 – 20 năm',    ok: false },
-      { t: 'B. 50 – 80 năm',    ok: false },
-      { t: 'C. 100 – 200 năm',  ok: false },
-      { t: 'D. 400 – 500 năm',  ok: true  },
-    ],
-    explain: '🌟 Chính xác! Chai nhựa PET cần tới 400–500 năm mới phân hủy được – hãy tái chế nhé!',
-  },
-};
-
-/* =========================================================
-   STATE
-   ========================================================= */
-let cntOk = 0, cntBad = 0, cntClean = 0;
-let busy = false;
-let activeTW = null;   // trash-wrap element being processed
-let earthHome = null;  // { left, top } in px (fixed coords)
-
-/* =========================================================
-   HELPERS
-   ========================================================= */
-function center(el) {
-  const r = el.getBoundingClientRect();
-  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-}
-
-function floatText(x, y, txt, color) {
-  const d = document.createElement('div');
-  d.className = 'float-text';
-  d.style.cssText = `left:${x - 30}px; top:${y - 20}px; color:${color}`;
-  d.textContent = txt;
-  document.body.appendChild(d);
-  setTimeout(() => d.remove(), 1500);
-}
-
-function burst(x, y, good) {
-  const colors = good
-    ? ['#43a047','#66bb6a','#ffee58','#fff176']
-    : ['#ef5350','#e53935','#ff8f00','#ffa726'];
-  for (let i = 0; i < 10; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = 6 + Math.random() * 8;
-    const angle = Math.random() * 360;
-    const dist  = 40 + Math.random() * 60;
-    const dx = Math.cos(angle * Math.PI / 180) * dist + 'px';
-    const dy = Math.sin(angle * Math.PI / 180) * dist + 'px';
-    p.style.cssText = `
+    function burst(x, y, good) {
+      const colors = good
+        ? ['#43a047', '#66bb6a', '#ffee58', '#fff176']
+        : ['#ef5350', '#e53935', '#ff8f00', '#ffa726'];
+      for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = 6 + Math.random() * 8;
+        const angle = Math.random() * 360;
+        const dist = 40 + Math.random() * 60;
+        const dx = Math.cos(angle * Math.PI / 180) * dist + 'px';
+        const dy = Math.sin(angle * Math.PI / 180) * dist + 'px';
+        p.style.cssText = `
       width:${size}px; height:${size}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
+      background:${colors[Math.floor(Math.random() * colors.length)]};
       left:${x}px; top:${y}px;
       --dx:${dx}; --dy:${dy};
-      animation-delay:${Math.random()*0.1}s;
+      animation-delay:${Math.random() * 0.1}s;
     `;
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 900);
-  }
-}
-
-/* =========================================================
-   EARTH PLACEMENT
-   ========================================================= */
-function snapshotEarthHome() {
-  const earth = document.getElementById('earth');
-  // Convert to fixed coords
-  const r = earth.getBoundingClientRect();
-  earthHome = { left: r.left, top: r.top };
-}
-
-function resetEarth() {
-  const earth = document.getElementById('earth');
-  earth.classList.remove('flying');
-  earth.style.left     = '';
-  earth.style.top      = '';
-  earth.style.position = '';
-  earth.style.bottom   = '';
-  // Move back to body top-level if it was moved
-  if (earth.parentElement !== document.body) document.body.appendChild(earth);
-}
-
-/* =========================================================
-   CLICK HANDLER
-   ========================================================= */
-document.querySelectorAll('.trash-wrap').forEach(tw => {
-  tw.addEventListener('click', function () {
-    if (busy || this.classList.contains('collected')) return;
-    busy = true;
-    activeTW = this;
-
-    const earth    = document.getElementById('earth');
-    const trashPos = center(this.querySelector('.trash-icon'));
-
-    // 1. Snapshot earth home position BEFORE we go flying
-    snapshotEarthHome();
-
-    // 2. Grab current viewport coords, then move earth to body so it
-    //    escapes #side-panel's transform containing-block
-    const er = earth.getBoundingClientRect();
-    document.body.appendChild(earth);
-
-    // Place at same visual spot (now relative to viewport correctly)
-    earth.style.position = 'fixed';
-    earth.style.left = er.left + 'px';
-    earth.style.top  = er.top  + 'px';
-
-    // Force reflow so transition fires properly
-    earth.getBoundingClientRect();
-    earth.classList.add('flying');
-
-    // 3. Fly earth toward trash
-    earth.style.left = (trashPos.x - er.width  / 2) + 'px';
-    earth.style.top  = (trashPos.y - er.height / 2) + 'px';
-
-    setTimeout(() => showModal(this.dataset.type), 820);
-  });
-});
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-function showModal(type) {
-  const data = QUIZ[type];
-  document.getElementById('modal-trash-icon').innerHTML = data.icon;
-  document.getElementById('modal-trash-name').textContent = data.name;
-  document.getElementById('modal-question').textContent   = data.q;
-
-  const cont = document.getElementById('modal-answers');
-  cont.innerHTML = '';
-  const letters = ['A','B','C','D'];
-  data.answers.forEach((ans, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'ans-btn';
-    btn.innerHTML = `<span class="letter">${letters[i]}</span>${ans.t.slice(3)}`; // strip "A. "
-    btn.addEventListener('click', () => handleAnswer(ans.ok, data.explain, btn, type));
-    cont.appendChild(btn);
-  });
-
-  document.getElementById('modal').classList.add('show');
-}
-
-function handleAnswer(ok, explain, btn, type) {
-  // Disable all buttons
-  document.querySelectorAll('.ans-btn').forEach(b => {
-    b.disabled = true;
-    b.style.opacity = '0.65';
-  });
-  btn.style.opacity = '1';
-  btn.classList.add(ok ? 'correct' : 'wrong');
-
-  if (ok) { cntOk++;  document.getElementById('cnt-ok').textContent  = cntOk;  }
-  else     { cntBad++; document.getElementById('cnt-bad').textContent = cntBad; }
-
-  setTimeout(() => {
-    document.getElementById('modal').classList.remove('show');
-    animateTrash(ok, type);
-  }, 600);
-}
-
-/* =========================================================
-   TRASH ANIMATION
-   ========================================================= */
-function animateTrash(correct, type) {
-  const tw       = activeTW;
-  const iconEl   = tw.querySelector('.trash-icon');
-  const earth    = document.getElementById('earth');
-  const trashCan = document.getElementById('trashCan');
-
-  const iconPos  = center(iconEl);
-  const canPos   = center(trashCan);
-
-  // Clone the trash icon at its current position
-  const clone = document.createElement('div');
-  clone.className = 'trash-clone';
-  clone.innerHTML = QUIZ[type].icon;
-  clone.style.left = (iconPos.x - 35) + 'px';
-  clone.style.top  = (iconPos.y - 35) + 'px';
-  document.body.appendChild(clone);
-
-  // Hide original trash item
-  tw.style.opacity = '0';
-
-  if (correct) {
-    /* ── ĐÚNG: rác bay vào thùng ── */
-    const mouthX = canPos.x - 35;
-    const mouthY = canPos.y - 55;
-
-    // Fly clone to trashcan mouth
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      clone.style.left = mouthX + 'px';
-      clone.style.top  = mouthY + 'px';
-    }));
-
-    // Earth also flies to trashcan together
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      earth.style.left = (canPos.x - 45) + 'px';
-      earth.style.top  = (canPos.y - 45) + 'px';
-    }));
-
-    // Phase 2: shrink clone into the can
-    setTimeout(() => {
-      burst(canPos.x, canPos.y, true);
-      floatText(canPos.x, canPos.y - 30, '+10 🎉', '#2e7d32');
-
-      trashCan.classList.add('shake');
-      setTimeout(() => trashCan.classList.remove('shake'), 600);
-
-      clone.style.transition = 'left .3s ease-in, top .3s ease-in, transform .3s ease-in, opacity .3s ease-in';
-      clone.style.left      = (canPos.x - 20) + 'px';
-      clone.style.top       = (canPos.y - 10) + 'px';
-      clone.style.transform = 'scale(0) rotate(360deg)';
-      clone.style.opacity   = '0';
-    }, 800);
-
-    // Earth flies back home
-    setTimeout(() => resetEarth(), 1100);
-
-  } else {
-    /* ── SAI: rác bay đến thùng → bị hắt ra ngoài → rớt xuống đất ── */
-
-    const mouthX = canPos.x - 35;
-    const mouthY = canPos.y - 60;
-    const bounceDir = Math.random() > 0.5 ? 1 : -1;
-
-    // Bước 1: clone bay đến miệng thùng (giống correct)
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      clone.style.left = mouthX + 'px';
-      clone.style.top  = mouthY + 'px';
-    }));
-
-    // Earth cũng bay đến thùng
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      earth.style.left = (canPos.x - 45) + 'px';
-      earth.style.top  = (canPos.y - 45) + 'px';
-    }));
-
-    // Bước 2: sau khi clone tới miệng thùng → bị văng ra mạnh sang một bên
-    setTimeout(() => {
-      burst(canPos.x, canPos.y - 40, false);
-      floatText(canPos.x, canPos.y - 70, '❌ Rớt ra ngoài!', '#c62828');
-
-      // Clone văng ngang mạnh rồi rớt xuống đất
-      clone.style.transition =
-        'left .55s cubic-bezier(.1,0,.3,1), top .7s cubic-bezier(.2,-.4,.5,1.3), transform .55s ease-out, opacity .35s ease-in .4s';
-      clone.style.left      = (canPos.x + bounceDir * (130 + Math.random() * 60) - 35) + 'px';
-      clone.style.top       = (window.innerHeight - 100) + 'px';
-      clone.style.transform = `scale(0.55) rotate(${bounceDir * (200 + Math.random() * 120)}deg)`;
-      clone.style.opacity   = '0';
-
-      // Thùng rác lắc "từ chối"
-      trashCan.classList.add('shake');
-      setTimeout(() => trashCan.classList.remove('shake'), 600);
-    }, 800);
-
-    // Earth về nhà sau khi rác bị từ chối
-    setTimeout(() => resetEarth(), 1100);
-  }
-
-  // Final cleanup
-  const cleanupDelay = correct ? 1500 : 1700;
-  setTimeout(() => {
-    clone.remove();
-    tw.classList.add('collected');
-    tw.style.opacity = '';
-
-    cntClean++;
-    document.getElementById('cnt-clean').textContent = cntClean;
-
-    busy = false;
-    activeTW = null;
-
-    if (cntClean >= 4) setTimeout(showWin, 600);
-  }, cleanupDelay);
-}
-
-/* =========================================================
-   WIN
-   ========================================================= */
-function showWin() {
-  document.getElementById('win-score').textContent =
-    `⭐ Điểm: ${cntOk * 10} | ✅ Đúng: ${cntOk} | ❌ Sai: ${cntBad}`;
-  document.getElementById('win-screen').classList.add('show');
-  // Celebration particles
-  for (let i = 0; i < 5; i++) {
-    setTimeout(() => burst(
-      100 + Math.random() * (window.innerWidth - 200),
-      100 + Math.random() * (window.innerHeight - 200),
-      true
-    ), i * 250);
-  }
-}
-
-function restartGame() {
-  cntOk = cntBad = cntClean = 0;
-  document.getElementById('cnt-ok').textContent    = '0';
-  document.getElementById('cnt-bad').textContent   = '0';
-  document.getElementById('cnt-clean').textContent = '0';
-
-  document.querySelectorAll('.trash-wrap').forEach(tw => {
-    tw.classList.remove('collected');
-    tw.style.opacity = '';
-  });
-
-  resetEarth();
-  document.getElementById('win-screen').classList.remove('show');
-  busy = false; activeTW = null;
-}
-
-/* =========================================================
-   SUN RAYS
-   ========================================================= */
-(function buildRays() {
-  const sun = document.querySelector('.sun');
-  for (let i = 0; i < 8; i++) {
-    const r = document.createElement('div');
-    r.className = 'sun-ray';
-    r.style.transform = `translateX(-50%) translateY(-110%) rotate(${i * 45}deg)`;
-    sun.appendChild(r);
-  }
-})();
-
-/* =========================================================
-   REMOVE WHITE BACKGROUND FROM IMAGES
-   ========================================================= */
-function removeWhiteBg(img, threshold = 220) {
-  // Wait until image is fully loaded
-  const process = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width  = img.naturalWidth  || img.width  || 300;
-    canvas.height = img.naturalHeight || img.height || 300;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    try {
-      const id = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const d  = id.data;
-      for (let i = 0; i < d.length; i += 4) {
-        const r = d[i], g = d[i+1], b = d[i+2];
-        // Make near-white and near-gray pixels transparent
-        if (r > threshold && g > threshold && b > threshold) {
-          d[i+3] = 0;
-        }
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 900);
       }
-      ctx.putImageData(id, 0, 0);
-      img.src = canvas.toDataURL('image/png');
-    } catch(e) {
-      // Cross-origin guard (shouldn't happen with local files)
-      console.warn('removeWhiteBg:', e);
     }
-  };
-  if (img.complete && img.naturalWidth) process();
-  else img.addEventListener('load', process);
-}
 
-// Apply to all trash icons + trashcan on page load
-window.addEventListener('load', () => {
-  document.querySelectorAll('.trash-icon, #trashCan').forEach(img => {
-    removeWhiteBg(img);
-  });
-});
+    /* =========================================================
+       EARTH PLACEMENT
+       ========================================================= */
+    function snapshotEarthHome() {
+      const earth = document.getElementById('earth');
+      // Convert to fixed coords
+      const r = earth.getBoundingClientRect();
+      earthHome = { left: r.left, top: r.top };
+    }
 
-/* Snapshot earth home once page has rendered */
-window.addEventListener('load', () => setTimeout(snapshotEarthHome, 100));
-window.addEventListener('resize', snapshotEarthHome);
-</script>
+    function resetEarth() {
+      const earth = document.getElementById('earth');
+      earth.classList.remove('flying');
+      earth.style.left = '';
+      earth.style.top = '';
+      earth.style.position = '';
+      earth.style.bottom = '';
+      // Move back to body top-level if it was moved
+      if (earth.parentElement !== document.body) document.body.appendChild(earth);
+    }
+
+    /* =========================================================
+       CLICK HANDLER
+       ========================================================= */
+    document.querySelectorAll('.trash-wrap').forEach(tw => {
+      tw.addEventListener('click', function () {
+        if (busy || this.classList.contains('collected')) return;
+        busy = true;
+        activeTW = this;
+
+        const earth = document.getElementById('earth');
+        const trashPos = center(this.querySelector('.trash-icon'));
+
+        // 1. Snapshot earth home position BEFORE we go flying
+        snapshotEarthHome();
+
+        // 2. Grab current viewport coords, then move earth to body so it
+        //    escapes #side-panel's transform containing-block
+        const er = earth.getBoundingClientRect();
+        document.body.appendChild(earth);
+
+        // Place at same visual spot (now relative to viewport correctly)
+        earth.style.position = 'fixed';
+        earth.style.left = er.left + 'px';
+        earth.style.top = er.top + 'px';
+
+        // Force reflow so transition fires properly
+        earth.getBoundingClientRect();
+        earth.classList.add('flying');
+
+        // 3. Fly earth toward trash
+        earth.style.left = (trashPos.x - er.width / 2) + 'px';
+        earth.style.top = (trashPos.y - er.height / 2) + 'px';
+
+        setTimeout(() => showModal(this.dataset.type), 820);
+      });
+    });
+
+    /* =========================================================
+       MODAL
+       ========================================================= */
+    function showModal(type) {
+      const data = QUIZ[type];
+      document.getElementById('modal-trash-icon').innerHTML = data.icon;
+      document.getElementById('modal-trash-name').textContent = data.name;
+      document.getElementById('modal-question').textContent = data.q;
+
+      const cont = document.getElementById('modal-answers');
+      cont.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+      data.answers.forEach((ans, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'ans-btn';
+        btn.innerHTML = `<span class="letter">${letters[i]}</span>${ans.t.slice(3)}`; // strip "A. "
+        btn.addEventListener('click', () => handleAnswer(ans.ok, data.explain, btn, type));
+        cont.appendChild(btn);
+      });
+
+      document.getElementById('modal').classList.add('show');
+    }
+
+    function handleAnswer(ok, explain, btn, type) {
+      // Disable all buttons
+      document.querySelectorAll('.ans-btn').forEach(b => {
+        b.disabled = true;
+        b.style.opacity = '0.65';
+      });
+      btn.style.opacity = '1';
+      btn.classList.add(ok ? 'correct' : 'wrong');
+
+      if (ok) { cntOk++; document.getElementById('cnt-ok').textContent = cntOk; }
+      else { cntBad++; document.getElementById('cnt-bad').textContent = cntBad; }
+
+      setTimeout(() => {
+        document.getElementById('modal').classList.remove('show');
+        animateTrash(ok, type);
+      }, 600);
+    }
+
+    /* =========================================================
+       TRASH ANIMATION
+       ========================================================= */
+    function animateTrash(correct, type) {
+      const tw = activeTW;
+      const iconEl = tw.querySelector('.trash-icon');
+      const earth = document.getElementById('earth');
+      const trashCan = document.getElementById('trashCan');
+
+      const iconPos = center(iconEl);
+      const canPos = center(trashCan);
+
+      // Clone the trash icon at its current position
+      const clone = document.createElement('div');
+      clone.className = 'trash-clone';
+      clone.innerHTML = QUIZ[type].icon;
+      clone.style.left = (iconPos.x - 35) + 'px';
+      clone.style.top = (iconPos.y - 35) + 'px';
+      document.body.appendChild(clone);
+
+      // Hide original trash item
+      tw.style.opacity = '0';
+
+      if (correct) {
+        /* ── ĐÚNG: rác bay vào thùng ── */
+        const mouthX = canPos.x - 35;
+        const mouthY = canPos.y - 55;
+
+        // Fly clone to trashcan mouth
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          clone.style.left = mouthX + 'px';
+          clone.style.top = mouthY + 'px';
+        }));
+
+        // Earth also flies to trashcan together
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          earth.style.left = (canPos.x - 45) + 'px';
+          earth.style.top = (canPos.y - 45) + 'px';
+        }));
+
+        // Phase 2: shrink clone into the can
+        setTimeout(() => {
+          burst(canPos.x, canPos.y, true);
+          floatText(canPos.x, canPos.y - 30, '+10 🎉', '#2e7d32');
+
+          trashCan.classList.add('shake');
+          setTimeout(() => trashCan.classList.remove('shake'), 600);
+
+          clone.style.transition = 'left .3s ease-in, top .3s ease-in, transform .3s ease-in, opacity .3s ease-in';
+          clone.style.left = (canPos.x - 20) + 'px';
+          clone.style.top = (canPos.y - 10) + 'px';
+          clone.style.transform = 'scale(0) rotate(360deg)';
+          clone.style.opacity = '0';
+        }, 800);
+
+        // Earth flies back home
+        setTimeout(() => resetEarth(), 1100);
+
+      } else {
+        /* ── SAI: rác bay đến thùng → bị hắt ra ngoài → rớt xuống đất ── */
+
+        const mouthX = canPos.x - 35;
+        const mouthY = canPos.y - 60;
+        const bounceDir = Math.random() > 0.5 ? 1 : -1;
+
+        // Bước 1: clone bay đến miệng thùng (giống correct)
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          clone.style.left = mouthX + 'px';
+          clone.style.top = mouthY + 'px';
+        }));
+
+        // Earth cũng bay đến thùng
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          earth.style.left = (canPos.x - 45) + 'px';
+          earth.style.top = (canPos.y - 45) + 'px';
+        }));
+
+        // Bước 2: sau khi clone tới miệng thùng → bị văng ra mạnh sang một bên
+        setTimeout(() => {
+          burst(canPos.x, canPos.y - 40, false);
+          floatText(canPos.x, canPos.y - 70, '❌ Rớt ra ngoài!', '#c62828');
+
+          // Clone văng ngang mạnh rồi rớt xuống đất
+          clone.style.transition =
+            'left .55s cubic-bezier(.1,0,.3,1), top .7s cubic-bezier(.2,-.4,.5,1.3), transform .55s ease-out, opacity .35s ease-in .4s';
+          clone.style.left = (canPos.x + bounceDir * (130 + Math.random() * 60) - 35) + 'px';
+          clone.style.top = (window.innerHeight - 100) + 'px';
+          clone.style.transform = `scale(0.55) rotate(${bounceDir * (200 + Math.random() * 120)}deg)`;
+          clone.style.opacity = '0';
+
+          // Thùng rác lắc "từ chối"
+          trashCan.classList.add('shake');
+          setTimeout(() => trashCan.classList.remove('shake'), 600);
+        }, 800);
+
+        // Earth về nhà sau khi rác bị từ chối
+        setTimeout(() => resetEarth(), 1100);
+      }
+
+      // Final cleanup
+      const cleanupDelay = correct ? 1500 : 1700;
+      setTimeout(() => {
+        clone.remove();
+        tw.classList.add('collected');
+        tw.style.opacity = '';
+
+        cntClean++;
+        document.getElementById('cnt-clean').textContent = cntClean;
+
+        busy = false;
+        activeTW = null;
+
+        if (cntClean >= 6) setTimeout(showWin, 600);
+      }, cleanupDelay);
+    }
+
+    /* =========================================================
+       WIN
+       ========================================================= */
+    function showWin() {
+      document.getElementById('win-score').textContent =
+        `⭐ Điểm: ${cntOk * 10} | ✅ Đúng: ${cntOk} | ❌ Sai: ${cntBad}`;
+      document.getElementById('win-screen').classList.add('show');
+      // Celebration particles
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => burst(
+          100 + Math.random() * (window.innerWidth - 200),
+          100 + Math.random() * (window.innerHeight - 200),
+          true
+        ), i * 250);
+      }
+    }
+
+    function restartGame() {
+      cntOk = cntBad = cntClean = 0;
+      document.getElementById('cnt-ok').textContent = '0';
+      document.getElementById('cnt-bad').textContent = '0';
+      document.getElementById('cnt-clean').textContent = '0';
+
+      document.querySelectorAll('.trash-wrap').forEach(tw => {
+        tw.classList.remove('collected');
+        tw.style.opacity = '';
+      });
+
+      resetEarth();
+      document.getElementById('win-screen').classList.remove('show');
+      busy = false; activeTW = null;
+    }
+
+    /* =========================================================
+       SUN RAYS
+       ========================================================= */
+    (function buildRays() {
+      const sun = document.querySelector('.sun');
+      for (let i = 0; i < 8; i++) {
+        const r = document.createElement('div');
+        r.className = 'sun-ray';
+        r.style.transform = `translateX(-50%) translateY(-110%) rotate(${i * 45}deg)`;
+        sun.appendChild(r);
+      }
+    })();
+
+    /* =========================================================
+       REMOVE WHITE BACKGROUND FROM IMAGES
+       ========================================================= */
+    function removeWhiteBg(img, threshold = 220) {
+      // Wait until image is fully loaded
+      const process = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth || img.width || 300;
+        canvas.height = img.naturalHeight || img.height || 300;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        try {
+          const id = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const d = id.data;
+          for (let i = 0; i < d.length; i += 4) {
+            const r = d[i], g = d[i + 1], b = d[i + 2];
+            // Make near-white and near-gray pixels transparent
+            if (r > threshold && g > threshold && b > threshold) {
+              d[i + 3] = 0;
+            }
+          }
+          ctx.putImageData(id, 0, 0);
+          img.src = canvas.toDataURL('image/png');
+        } catch (e) {
+          // Cross-origin guard (shouldn't happen with local files)
+          console.warn('removeWhiteBg:', e);
+        }
+      };
+      if (img.complete && img.naturalWidth) process();
+      else img.addEventListener('load', process);
+    }
+
+    // Apply to all trash icons + trashcan on page load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.trash-icon, #trashCan').forEach(img => {
+        removeWhiteBg(img);
+      });
+    });
+
+    /* Snapshot earth home once page has rendered */
+    window.addEventListener('load', () => setTimeout(snapshotEarthHome, 100));
+    window.addEventListener('resize', snapshotEarthHome);
+  </script>
 </body>
+
 </html>

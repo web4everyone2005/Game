@@ -295,19 +295,7 @@
                   top  .75s cubic-bezier(.25,.46,.45,.94);
     }
 
-    /* ─── HUD / Score ─────────────────────────────────────── */
-    #hud {
-      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(6px);
-      padding: 9px 28px; border-radius: 40px;
-      font-size: 1rem; font-weight: 700; color: #1a4a1a;
-      box-shadow: 0 4px 20px rgba(0,0,0,.18);
-      z-index: 200;
-      display: flex; gap: 22px; align-items: center;
-      white-space: nowrap;
-    }
-    #hud span { display: flex; align-items: center; gap: 5px; }
+
 
     /* ─── Hint Bar ────────────────────────────────────────── */
     #hint {
@@ -530,6 +518,9 @@
 
 <!-- ── HUD ── -->
 <div id="title">🌿 Bảo Vệ Môi Trường</div>
+<span id="cnt-clean" style="display:none">0</span>
+<span id="cnt-ok" style="display:none">0</span>
+<span id="cnt-bad" style="display:none">0</span>
 
 <div id="hint">👆 Nhấn vào rác thải để dọn sạch bãi biển!</div>
 
@@ -540,7 +531,6 @@
     <div id="modal-trash-name"></div>
     <div id="modal-question"></div>
     <div id="modal-answers"></div>
-    <div id="modal-result"></div>
   </div>
 </div>
 
@@ -731,9 +721,6 @@ function showModal(type) {
     cont.appendChild(btn);
   });
 
-  const res = document.getElementById('modal-result');
-  res.style.display = 'none';
-  res.className = '';
   document.getElementById('modal').classList.add('show');
 }
 
@@ -746,18 +733,13 @@ function handleAnswer(ok, explain, btn, type) {
   btn.style.opacity = '1';
   btn.classList.add(ok ? 'correct' : 'wrong');
 
-  const res = document.getElementById('modal-result');
-  res.className = ok ? 'ok' : 'bad';
-  res.textContent = ok ? explain : '❌ Chưa đúng! Nhưng rác vẫn phải dọn nhé! ' + explain;
-  res.style.display = 'block';
-
   if (ok) { cntOk++;  document.getElementById('cnt-ok').textContent  = cntOk;  }
   else     { cntBad++; document.getElementById('cnt-bad').textContent = cntBad; }
 
   setTimeout(() => {
     document.getElementById('modal').classList.remove('show');
     animateTrash(ok, type);
-  }, 1600);
+  }, 600);
 }
 
 /* =========================================================
@@ -783,52 +765,84 @@ function animateTrash(correct, type) {
   // Hide original trash item
   tw.style.opacity = '0';
 
-  // Both correct & wrong: first fly toward the trashcan mouth
-  const mouthX = canPos.x - 35;
-  const mouthY = canPos.y - 50;
+  if (correct) {
+    /* ── ĐÚNG: rác bay vào thùng ── */
+    const mouthX = canPos.x - 35;
+    const mouthY = canPos.y - 55;
 
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    clone.style.left = mouthX + 'px';
-    clone.style.top  = mouthY + 'px';
-  }));
+    // Fly clone to trashcan mouth
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      clone.style.left = mouthX + 'px';
+      clone.style.top  = mouthY + 'px';
+    }));
 
-  // Earth also flies to trashcan together
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    earth.style.left = (canPos.x - 45) + 'px';
-    earth.style.top  = (canPos.y - 45) + 'px';
-  }));
+    // Earth also flies to trashcan together
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      earth.style.left = (canPos.x - 45) + 'px';
+      earth.style.top  = (canPos.y - 45) + 'px';
+    }));
 
-  // Phase 2: after clone arrives at mouth (~800ms)
-  setTimeout(() => {
-    burst(canPos.x, canPos.y, correct);
-    floatText(canPos.x, canPos.y - 30,
-      correct ? '+10 🎉' : '😅 Cố lên!',
-      correct ? '#2e7d32' : '#c62828');
+    // Phase 2: shrink clone into the can
+    setTimeout(() => {
+      burst(canPos.x, canPos.y, true);
+      floatText(canPos.x, canPos.y - 30, '+10 🎉', '#2e7d32');
 
-    if (correct) {
-      // Shrink into the can and disappear
       trashCan.classList.add('shake');
       setTimeout(() => trashCan.classList.remove('shake'), 600);
+
       clone.style.transition = 'left .3s ease-in, top .3s ease-in, transform .3s ease-in, opacity .3s ease-in';
-      clone.style.left      = canPos.x - 20 + 'px';
-      clone.style.top       = canPos.y - 10 + 'px';
+      clone.style.left      = (canPos.x - 20) + 'px';
+      clone.style.top       = (canPos.y - 10) + 'px';
       clone.style.transform = 'scale(0) rotate(360deg)';
       clone.style.opacity   = '0';
-    } else {
-      // Bounce off: fly to the side and fall down
-      clone.style.transition = 'left .5s cubic-bezier(.25,-.5,.75,.5), top .5s cubic-bezier(.25,-.5,.75,1.5), transform .5s ease-in, opacity .5s ease-in';
-      const bounceDir = Math.random() > 0.5 ? 1 : -1;
-      clone.style.left      = (canPos.x + bounceDir * (80 + Math.random() * 60)) + 'px';
-      clone.style.top       = (canPos.y + 120 + Math.random() * 60) + 'px';
-      clone.style.transform = `scale(0.6) rotate(${bounceDir * (180 + Math.random() * 120)}deg)`;
-      clone.style.opacity   = '0';
-    }
-  }, 800);
+    }, 800);
 
-  // Earth flies back home
-  setTimeout(() => resetEarth(), 1100);
+    // Earth flies back home
+    setTimeout(() => resetEarth(), 1100);
+
+  } else {
+    /* ── SAI: rác bay đến thùng → bị hắt ra ngoài → rớt xuống đất ── */
+
+    const mouthX = canPos.x - 35;
+    const mouthY = canPos.y - 60;
+    const bounceDir = Math.random() > 0.5 ? 1 : -1;
+
+    // Bước 1: clone bay đến miệng thùng (giống correct)
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      clone.style.left = mouthX + 'px';
+      clone.style.top  = mouthY + 'px';
+    }));
+
+    // Earth cũng bay đến thùng
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      earth.style.left = (canPos.x - 45) + 'px';
+      earth.style.top  = (canPos.y - 45) + 'px';
+    }));
+
+    // Bước 2: sau khi clone tới miệng thùng → bị văng ra mạnh sang một bên
+    setTimeout(() => {
+      burst(canPos.x, canPos.y - 40, false);
+      floatText(canPos.x, canPos.y - 70, '❌ Rớt ra ngoài!', '#c62828');
+
+      // Clone văng ngang mạnh rồi rớt xuống đất
+      clone.style.transition =
+        'left .55s cubic-bezier(.1,0,.3,1), top .7s cubic-bezier(.2,-.4,.5,1.3), transform .55s ease-out, opacity .35s ease-in .4s';
+      clone.style.left      = (canPos.x + bounceDir * (130 + Math.random() * 60) - 35) + 'px';
+      clone.style.top       = (window.innerHeight - 100) + 'px';
+      clone.style.transform = `scale(0.55) rotate(${bounceDir * (200 + Math.random() * 120)}deg)`;
+      clone.style.opacity   = '0';
+
+      // Thùng rác lắc "từ chối"
+      trashCan.classList.add('shake');
+      setTimeout(() => trashCan.classList.remove('shake'), 600);
+    }, 800);
+
+    // Earth về nhà sau khi rác bị từ chối
+    setTimeout(() => resetEarth(), 1100);
+  }
 
   // Final cleanup
+  const cleanupDelay = correct ? 1500 : 1700;
   setTimeout(() => {
     clone.remove();
     tw.classList.add('collected');
@@ -841,7 +855,7 @@ function animateTrash(correct, type) {
     activeTW = null;
 
     if (cntClean >= 4) setTimeout(showWin, 600);
-  }, 1500);
+  }, cleanupDelay);
 }
 
 /* =========================================================
